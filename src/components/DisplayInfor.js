@@ -2,25 +2,44 @@ import React from "react";
 import UserInfor from "./UserInfor";
 
 class DisplayInfor extends React.Component {
-	render() {
-		const {listUsers} = this.props;
-		console.log(listUsers)
-		//props => viet tat properties
-		return (
-			<div>
-				{ listUsers.map((user) => {
-					return (
-						<div key = {user.id}>
-							<div>My name is {user.name} </div>
-							<div>My age's {user.age} </div>
-						</div>
-					);
-				})}
-				{/* <div>My name is {name}</div>
+
+  state = {
+    isShowListUser : true,
+  }
+  handleShowHide = () => {
+    this.setState({
+      isShowListUser: !this.state.isShowListUser
+    })
+  }
+  render() {
+    const { listUsers } = this.props;
+    console.log(listUsers);
+    //props => viet tat properties
+    return (
+      <div>
+        <div>
+          <span onClick = {()=> {this.handleShowHide()}}>
+            {this.state.isShowListUser === true ? " Hide list users" : "Show list users"}
+            </span>
+        </div>
+        { this.state.isShowListUser && 
+        <div>
+        {listUsers.map((user) => {
+          console.log(">>> check user", user);
+              return (
+                <div key={user.id} className = {+user.age > 18 ? "green" : "red"}>
+                  <div>My name is {user.name} </div>
+                  <div>My age's {user.age} </div>
+                </div>
+              );
+        })}
+        {/* <div>My name is {name}</div>
 				<div>My age's {age}</div> */}
-			</div>	
-		);
-	}
+        </div>
+        }
+      </div>
+    );
+  }
 }
 
-export default DisplayInfor 
+export default DisplayInfor;
