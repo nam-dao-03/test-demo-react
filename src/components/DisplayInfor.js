@@ -5,10 +5,27 @@ import logo from "./../logo.svg";
 
 class DisplayInfor extends React.Component {
   constructor(props) {
+    console.log('>> call constructor')
     super(props);
     this.state = {
       isShowListUser: true,
     };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      document.title = 'Nam Nam';
+    }, 3000);
+    console.log('>>call me component dis mount')
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('>>>call me did update', this.props, prevProps)
+    if(this.props.listUsers !== prevProps.listUsers) {
+      if(this.props.listUsers.length === 5) {
+        alert('You got 5 users')
+      }
+    }
   }
   
   handleShowHide = () => {
@@ -17,8 +34,8 @@ class DisplayInfor extends React.Component {
     });
   };
   render() {
+    console.log('>>> call me render')
     const { listUsers } = this.props;
-    console.log(listUsers);
     //props => viet tat properties
     return (
       <div className="display-infor-container">
@@ -37,7 +54,6 @@ class DisplayInfor extends React.Component {
         {this.state.isShowListUser && (
           <>
             {listUsers.map((user) => {
-              console.log(">>> check user", user);
               return (
                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
                   <div>
