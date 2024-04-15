@@ -24,9 +24,10 @@ class MyComponent extends React.Component {
   render() {
     //destructuring array/object
     //DRY : don't repeat yourself
-
+	const test = {name : 'eric', age: 45};
     return (
       <>
+		{JSON.stringify(test)}
         <div className="a">
           <AddUserInfor handleAddNewUser={this.handleAddNewUser} />
           <br />
