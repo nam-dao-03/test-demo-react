@@ -64,8 +64,8 @@ const AddUserInfor = (props) => {
     event.preventDefault();
     props.handleAddNewUser({
       id: Math.floor(Math.random() * 100 + 1) + " - random",
-      name: this.state.name,
-      age: this.state.age,
+      name: name,
+      age: age,
     });
   };
   return (
